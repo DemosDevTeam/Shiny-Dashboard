@@ -1,6 +1,11 @@
 library(httr)
 library(jsonlite)
 library(tidyverse)
+library(devtools)
+#library(fireData)
+
+
+
 
 result <- fromJSON(txt = "data/test2.json")
 
@@ -41,9 +46,8 @@ df$age <- as.integer(df$age)
 # remove NA columns
 df <- df[, colSums(is.na(df))<nrow(df)]
 df <- df %>% 
-    select(-(df$`update preferences`))
+    select(-`update preferences`) %>% 
+    drop_na()
     
 
-df <- df %>% 
-    drop_na()
 #df$children <- as.factor(df$children)

@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
   })
   
   output$plot1 <- renderPlot({
-      boxplot(df$children)
+      barplot(table(df$age))
   })
   
 })
