@@ -40,7 +40,9 @@ shinyUI(fluidPage(
                                   label = "Select Marital Status",
                                   c("All", "Single, never married", "Single, divorced", "In a relationship", "Married", "Widowed")))
         )),
-    dashboardBody("This is the body!"),
+    dashboardBody(
+        fluidRow(box(plotOutput("plot1", height = 300, width = 500))
+                 ),
     title = "Demos"
-)))
-
+))
+))

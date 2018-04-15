@@ -16,7 +16,17 @@ shinyServer(function(input, output) {
   })
   
   output$plot1 <- renderPlot({
-      barplot(table(df$age))
+      print(input$genderInput)
+      
+      # check if nrow is 0
+      if (input$genderInput == "All") {
+          barplot(table(df$gender), col = "red")
+      } else {
+          barplot(table(df %>% filter(gender ==  input$genderInput) %>% select(gender)), col = "red")
+      }
+    
+      #ggplot(df, aes(x = age)) +
+          #geom_bar(fill = "blue"
   })
   
 })

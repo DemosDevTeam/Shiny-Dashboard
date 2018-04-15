@@ -2,6 +2,7 @@ library(httr)
 library(jsonlite)
 library(tidyverse)
 library(devtools)
+library(tidyverse)
 #library(fireData)
 
 
