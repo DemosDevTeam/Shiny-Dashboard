@@ -2,10 +2,10 @@
 library(shinydashboard)
 
 shinyUI(fluidPage(
-    dashboardPage(skin = "red",
+    dashboardPage(skin = "blue",
     dashboardHeader(title = "Demos Dashboard"),
     dashboardSidebar(
-        sidebarMenu(
+        sidebarMenu(id = "tabs",
             menuItem("About", tabName = "aboutTab", icon = icon("book")),
             menuItem("Gender", tabName = "genderTab", icon = icon("transgender-alt"),
                      radioButtons(inputId = "genderInput",
@@ -41,7 +41,8 @@ shinyUI(fluidPage(
                                   c("All", "Single, never married", "Single, divorced", "In a relationship", "Married", "Widowed")))
         )),
     dashboardBody(
-        fluidRow(box(plotOutput("plot1", height = 300, width = 500))
+        fluidRow(box(plotOutput("plot1", height = 300, width = 500)),
+                 box(plotOutput("plot2", height = 300, width = 500))
                  ),
     title = "Demos"
 ))

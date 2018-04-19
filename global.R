@@ -6,8 +6,6 @@ library(tidyverse)
 #library(fireData)
 
 
-
-
 result <- fromJSON(txt = "data/test2.json")
 
 n <- length(result$Users)
