@@ -11,6 +11,7 @@ library(reticulate)
 
 ```{python}
 import pyrebase
+import json
 
 config = { 
     "apiKey": "AIzaSyAAERSrXStyHsU889OZGfrCFe1E2Bit_xs",
@@ -27,6 +28,13 @@ db = firebase.database()
 
 users = db.child("Users").get()
 
-for user in users.each():
-    print(user.key())
+#for user in users.each():
+#    print(user.key())
+
+def writeToJSONFile(path, fileName, data):
+    filePathNameWExt = './' + path + '/' + fileName + '.json'
+    with open(filePathNameWExt, 'w') as fp:
+        json.dump(data, fp)
+
+writeToJSONFile('./data','test4',users.val())
 ```
