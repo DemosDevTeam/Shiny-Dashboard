@@ -1,13 +1,24 @@
-library(httr)
 library(jsonlite)
 library(tidyverse)
 library(devtools)
 library(tidyverse)
-#library(fireData)
+#if (!require("devtools")) install.packages("devtools")
+#devtools::install_github("Kohze/fireData")
+library(fireData)
 
+api_key <- Sys.getenv("API_KEY")
+project_domain <- Sys.getenv("AUTH_DOMAIN")
+db_url <- Sys.getenv("DATABASE_URL")
+project_id <- Sys.getenv("PROJECT_ID")
+project_url <- Sys.getenv("PROJECT_URL")
 
-result <- fromJSON(txt = "data/test2.json")
+#demos-5e3db-export.json
 
+download(project_url, fileName = "demos-5e3db-export")
+
+paste0(project_url,"/","demos-5e3db-export",".json")
+
+result <- fromJSON(txt = "data/test3.json")
 n <- length(result$Users)
 df <- setNames(data.frame(matrix(ncol = 14, nrow = n)), c("gender",
                                                          "race",
@@ -43,10 +54,11 @@ df$age <- as.integer(df$age)
     }
 
 # remove NA columns
-df <- df[, colSums(is.na(df))<nrow(df)]
-df <- df %>% 
-    select(-`update preferences`) %>% 
-    drop_na()
-    
+df <- df[, !colSums(is.na(df))==nrow(df)]
 
-#df$children <- as.factor(df$children)
+df <- df %>% 
+    select(-c(`update preferences`, cities, Pinned))
+
+
+
+    

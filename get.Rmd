@@ -1,0 +1,32 @@
+---
+title: "get"
+author: "Alex Kan -lexokan"
+date: "May 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+```
+
+```{python}
+import pyrebase
+
+config = { 
+    "apiKey": "AIzaSyAAERSrXStyHsU889OZGfrCFe1E2Bit_xs",
+    "authDomain": "demos-5e3db.firebaseapp.com",
+    "databaseURL": "https://demos-5e3db.firebaseio.com",
+    "projectId": "demos-5e3db",
+    "storageBucket": "demos-5e3db.appspot.com",
+    "messagingSenderId": "329457089013"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+db = firebase.database()
+
+users = db.child("Users").get()
+
+for user in users.each():
+    print(user.key())
+```

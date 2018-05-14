@@ -4,7 +4,6 @@ library(shiny)
 # about, gender, race, income, age, occupation, education, children, marital
 
 shinyServer(function(input, output) {
-
   output$plot1 <- renderPlot({
       if (input$tabs == "genderTab") {
           col <- "gender"
@@ -24,7 +23,12 @@ shinyServer(function(input, output) {
           col <- "marital"
       }
       
-      print(col)
+      barplot(1)
+      #print(input$tabs)
+      #sprint(col)
+      #print(input[[col]])
+      #print(input$tabName)
+      
       
       # check if nrow is 0
       #if (input$genderInput == "All") {
@@ -35,16 +39,14 @@ shinyServer(function(input, output) {
  
   })
   
-  output$plot2 <- renderPlot({
-      print(input$raceInput)
-      print(input$tabs)
-      
-      # check if nrow is 0
-      if (input$raceInput == "All") {
-          barplot(table(df$race), col = "black")
-      } else {
-          barplot(table(df %>% filter(race ==  input$raceInput) %>% select(race)), col = "black")
-      }
-      
-  })
+#  output$plot2 <- renderPlot({
+#    
+#      # check if nrow is 0
+#      if (input$raceInput == "All") {
+#          barplot(table(df$race), col = "black")
+#      } else {
+#          barplot(table(df %>% filter(race ==  input$raceInput) %>% select(race)), col = "black")
+#      }
+#      
+#  })
 })
